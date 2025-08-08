@@ -1,0 +1,30 @@
+services:
+  # always have shade-agent-api first in order of services
+  shade-agent-api:
+    environment:
+      NEAR_ACCOUNT_ID: ${NEAR_ACCOUNT_ID}
+      NEAR_SEED_PHRASE: ${NEAR_SEED_PHRASE}
+      API_CODEHASH: ${API_CODEHASH}
+      APP_CODEHASH: ${APP_CODEHASH}
+      NEXT_PUBLIC_contractId: ${NEXT_PUBLIC_contractId}
+      NEAR_RPC_JSON: ${NEAR_RPC_JSON}
+    platform: linux/amd64 # Explicitly set for TDX
+    # shade-agent-api-image
+    image: mattdlockyer/shade-agent-api@sha256:555a166f4c648a579061f65000ad66c757c70881b468a1ae3b1b4cd67238f2e0
+    container_name: shade-agent-api
+    # DO NOT EXPOSE THE API PORT TO THE PUBLIC
+    volumes:
+      - /var/run/tappd.sock:/var/run/tappd.sock
+    restart: always
+  shade-agent-app:
+    environment:
+      NEXT_PUBLIC_contractId: ${NEXT_PUBLIC_contractId}
+    platform: linux/amd64 # Explicitly set for TDX
+    # shade-agent-app-image
+    image: pivortex/my-app@sha256:426b8cdc86a97ec94cbadcafb5545cc06d263957e1d34c4df3f6f9151e5f36dc
+    container_name: shade-agent-app
+    ports:
+      - "3000:3000"
+    volumes:
+      - /var/run/tappd.sock:/var/run/tappd.sock
+    restart: always
