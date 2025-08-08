@@ -1,7 +1,7 @@
 [project]
 name = "shade-python-example"
 version = "0.1.0"
-description = "Simple Shade Agent in Python
+description = "Simple Shade Agent in Python"
 readme = "README.md"
 license = {file = "LICENSE"}
 requires-python = ">=3.8"
