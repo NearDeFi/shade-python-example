@@ -1,17 +1,14 @@
-# Use a single stage to avoid virtual environment issues
-FROM python:3.11-slim
+FROM python:3.11-alpine
 
 WORKDIR /app
 
-# Install system dependencies if needed
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    gcc \
-    && rm -rf /var/lib/apt/lists/*
+# Install system dependencies
+RUN apk add --no-cache gcc musl-dev
 
-# Copy requirements and install dependencies from registry
+# Copy toml file
 COPY pyproject.toml .
 
-# Install the shade-agent-py package from registry
+# Install dependencies
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir shade-agent-py
 
