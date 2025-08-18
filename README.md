@@ -6,7 +6,7 @@ This example demonstrates the available functions in the shade-agent-py package.
 
 Fill out the environment variables and open Docker
 
-Set up virtual environment and install dependencies 
+Set up a virtual environment and install dependencies 
 ```bash
 python -m venv venv
 source venv/bin/activate 
@@ -25,7 +25,7 @@ Run the CLI
 shade-agent-cli
 ```
 
-In another terminal run the tests
+In another terminal, run the app
 ```bash
 python src/app.py
 ```
