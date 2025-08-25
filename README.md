@@ -15,11 +15,6 @@ pip install -e .
 
 Set the contract prefix to `ac-proxy.`
 
-Install shade-agent-py
-```bash
-pip install shade-agent-py
-```
-
 Run the CLI 
 ```bash
 shade-agent-cli
